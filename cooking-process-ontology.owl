@@ -1,0 +1,505 @@
+@prefix : <http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology> .
+
+<http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology> rdf:type owl:Ontology .
+
+
+#################################################################
+#
+#    Object Properties
+#
+#################################################################
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#after
+
+:after rdf:type owl:IrreflexiveProperty ,
+                owl:ObjectProperty ;
+       
+       owl:inverseOf :before ;
+       
+       rdfs:range [ rdf:type owl:Restriction ;
+                    owl:onProperty :after ;
+                    owl:allValuesFrom :RecipeStep
+                  ] ;
+       
+       rdfs:domain [ rdf:type owl:Restriction ;
+                     owl:onProperty :after ;
+                     owl:allValuesFrom :RecipeStep
+                   ] .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#before
+
+:before rdf:type owl:IrreflexiveProperty ,
+                 owl:ObjectProperty ;
+        
+        rdfs:range [ rdf:type owl:Restriction ;
+                     owl:onProperty :before ;
+                     owl:allValuesFrom :RecipeStep
+                   ] ;
+        
+        rdfs:domain [ rdf:type owl:Restriction ;
+                      owl:onProperty :before ;
+                      owl:allValuesFrom :RecipeStep
+                    ] .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#hasIngredient
+
+:hasIngredient rdf:type owl:ObjectProperty ;
+               
+               rdfs:domain [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasIngredient ;
+                             owl:someValuesFrom :RecipeStep
+                           ] ;
+               
+               rdfs:range [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasIngredient ;
+                            owl:allValuesFrom :Ingredient
+                          ] .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#usesEquipment
+
+:usesEquipment rdf:type owl:ObjectProperty ;
+               
+               rdfs:range [ rdf:type owl:Restriction ;
+                            owl:onProperty :usesEquipment ;
+                            owl:allValuesFrom :Equipment
+                          ] ;
+               
+               rdfs:domain [ rdf:type owl:Restriction ;
+                             owl:onProperty :usesEquipment ;
+                             owl:someValuesFrom :RecipeStep
+                           ] .
+
+
+
+
+
+#################################################################
+#
+#    Data properties
+#
+#################################################################
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#hasDescription
+
+:hasDescription rdf:type owl:DatatypeProperty ,
+                         owl:FunctionalProperty ;
+                
+                rdfs:domain :Recipe ,
+                            :RecipeStep ;
+                
+                rdfs:range rdfs:Literal .
+
+
+
+
+
+#################################################################
+#
+#    Classes
+#
+#################################################################
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Cook
+
+:Cook rdf:type owl:Class ;
+      
+      owl:equivalentClass [ rdf:type owl:Class ;
+                            owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :hasIngredient ;
+                                                   owl:someValuesFrom :Ingredient
+                                                 ]
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :usesEquipment ;
+                                                   owl:onClass :Cooker ;
+                                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                                 ]
+                                                 [ rdf:type owl:Restriction ;
+                                                   owl:onProperty :usesEquipment ;
+                                                   owl:onClass :Cookware ;
+                                                   owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                                 ]
+                                               )
+                          ] ;
+      
+      rdfs:subClassOf :RecipeStep ;
+      
+      rdfs:comment "Put ingredients into cookware and heat."^^rdfs:Literal .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Cooker
+
+:Cooker rdf:type owl:Class ;
+        
+        rdfs:subClassOf :Equipment .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Cookware
+
+:Cookware rdf:type owl:Class ;
+          
+          rdfs:subClassOf :Equipment .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Egg
+
+:Egg rdf:type owl:Class ;
+     
+     rdfs:subClassOf :Ingredient .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Equipment
+
+:Equipment rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Fry
+
+:Fry rdf:type owl:Class ;
+     
+     owl:equivalentClass [ rdf:type owl:Restriction ;
+                           owl:onProperty :hasIngredient ;
+                           owl:someValuesFrom :Oil
+                         ] ;
+     
+     rdfs:subClassOf :Cook ;
+     
+     rdfs:comment "Put oil and ingredients into cookware and heat."^^rdfs:Literal .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Ingredient
+
+:Ingredient rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Knife
+
+:Knife rdf:type owl:Class ;
+       
+       rdfs:subClassOf :Equipment .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Meat
+
+:Meat rdf:type owl:Class ;
+      
+      rdfs:subClassOf :Ingredient .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Oil
+
+:Oil rdf:type owl:Class ;
+     
+     rdfs:subClassOf :Ingredient .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PrepareEggs
+
+:PrepareEggs rdf:type owl:Class ;
+             
+             owl:equivalentClass [ rdf:type owl:Class ;
+                                   owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :hasIngredient ;
+                                                          owl:someValuesFrom :Egg
+                                                        ]
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty :usesEquipment ;
+                                                          owl:onClass :Cookware ;
+                                                          owl:minQualifiedCardinality "1"^^xsd:nonNegativeInteger
+                                                        ]
+                                                      )
+                                 ] ;
+             
+             rdfs:subClassOf :RecipeStep ;
+             
+             rdfs:comment "Open eggs and put into bowl."^^rdfs:Literal .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PrepareVegetables
+
+:PrepareVegetables rdf:type owl:Class ;
+                   
+                   owl:equivalentClass [ rdf:type owl:Class ;
+                                         owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :hasIngredient ;
+                                                                owl:someValuesFrom :Vegetable
+                                                              ]
+                                                              [ rdf:type owl:Restriction ;
+                                                                owl:onProperty :usesEquipment ;
+                                                                owl:someValuesFrom :Knife
+                                                              ]
+                                                            )
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :before ;
+                                         owl:someValuesFrom :Cook
+                                       ] ;
+                   
+                   rdfs:subClassOf :RecipeStep ;
+                   
+                   rdfs:comment "Clean vegetables and cut into pieces with a knife."^^rdfs:Literal .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Recipe
+
+:Recipe rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#RecipeStep
+
+:RecipeStep rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#SliceMeat
+
+:SliceMeat rdf:type owl:Class ;
+           
+           owl:equivalentClass [ rdf:type owl:Class ;
+                                 owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :hasIngredient ;
+                                                        owl:someValuesFrom :Meat
+                                                      ]
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty :usesEquipment ;
+                                                        owl:someValuesFrom :Knife
+                                                      ]
+                                                    )
+                               ] ;
+           
+           rdfs:subClassOf :RecipeStep ;
+           
+           rdfs:comment "Cut meat into pieces with a knife."^^rdfs:Literal .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Vegetable
+
+:Vegetable rdf:type owl:Class ;
+           
+           rdfs:subClassOf :Ingredient .
+
+
+
+
+
+#################################################################
+#
+#    Individuals
+#
+#################################################################
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Beef
+
+:Beef rdf:type :Meat ,
+               owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Bowl
+
+:Bowl rdf:type :Cookware ,
+               owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#BulgogiRecipe
+
+:BulgogiRecipe rdf:type :Recipe ,
+                        owl:NamedIndividual ;
+               
+               :hasDescription """Making Bulgogi, korean barbecue beef:
+Cut onions
+Cut beef
+Put oil into hot pan and fry onions and meat"""^^rdfs:Literal ;
+               
+               :hasIngredient :Beef ,
+                              :Onion ;
+               
+               :usesEquipment :Pan ;
+               
+               :hasIngredient :SesameOil ;
+               
+               :usesEquipment :SlicingKnife ,
+                              :UtilityKnife .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#ChickenEgg
+
+:ChickenEgg rdf:type :Egg ,
+                     owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Eggplant
+
+:Eggplant rdf:type :Vegetable ,
+                   owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Ham
+
+:Ham rdf:type :Meat ,
+              owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#HamAndEggsRecipie
+
+:HamAndEggsRecipie rdf:type :Recipe ,
+                            owl:NamedIndividual ;
+                   
+                   :hasDescription """Making Ham and Eggs:
+Open eggs and put into bowl
+Cut ham
+Put oil into hot pan, put ham and eggs into pan and fry"""^^rdfs:Literal ;
+                   
+                   :usesEquipment :Bowl ;
+                   
+                   :hasIngredient :ChickenEgg ,
+                                  :Ham ;
+                   
+                   :usesEquipment :KitchenStove ,
+                                  :Pan ,
+                                  :SlicingKnife ;
+                   
+                   :hasIngredient :SunflowerOil .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Herbs
+
+:Herbs rdf:type :Vegetable ,
+                owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#KitchenStove
+
+:KitchenStove rdf:type :Cooker ,
+                       owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Onion
+
+:Onion rdf:type :Vegetable ,
+                owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Pan
+
+:Pan rdf:type :Cookware ,
+              owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Pot
+
+:Pot rdf:type :Cookware ,
+              owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#RatatouilleRecipie
+
+:RatatouilleRecipie rdf:type :Recipe ,
+                             owl:NamedIndividual ;
+                    
+                    :hasDescription """Making Ratatouille, a traditional french stewed vegetable dish:
+Clean and cut vegetables
+Put into pot and cook"""^^rdfs:Literal ;
+                    
+                    :hasIngredient :Eggplant ,
+                                   :Herbs ;
+                    
+                    :usesEquipment :KitchenStove ;
+                    
+                    :hasIngredient :Onion ;
+                    
+                    :usesEquipment :Pot ;
+                    
+                    :hasIngredient :Tomato ;
+                    
+                    :usesEquipment :UtilityKnife ;
+                    
+                    :hasIngredient :Zucchini .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#SesameOil
+
+:SesameOil rdf:type :Oil ,
+                    owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#SlicingKnife
+
+:SlicingKnife rdf:type :Knife ,
+                       owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#SunflowerOil
+
+:SunflowerOil rdf:type :Oil ,
+                       owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Tomato
+
+:Tomato rdf:type :Vegetable ,
+                 owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#UtilityKnife
+
+:UtilityKnife rdf:type :Knife ,
+                       owl:NamedIndividual .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Zucchini
+
+:Zucchini rdf:type :Vegetable ,
+                   owl:NamedIndividual .
+
+
+
+
+###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
+
