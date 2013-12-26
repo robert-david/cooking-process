@@ -34,9 +34,7 @@
                 
                 rdfs:subPropertyOf :Bulgogi_Transition ;
                 
-                rdfs:range :Fry ;
-                
-                rdfs:domain :SliceMeat .
+                rdfs:range :Fry .
 
 
 
@@ -66,9 +64,7 @@
                    
                    rdfs:range :Fry ;
                    
-                   rdfs:subPropertyOf :HamAndEggs_Transition ;
-                   
-                   rdfs:domain :SliceMeat .
+                   rdfs:subPropertyOf :HamAndEggs_Transition .
 
 
 
@@ -98,17 +94,13 @@
                        
                        rdfs:range :CookPasta ;
                        
-                       rdfs:subPropertyOf :PenneArrabiata_Transition ;
-                       
-                       rdfs:domain :PrepareVegetables .
+                       rdfs:subPropertyOf :PenneArrabiata_Transition .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_3_to_4
 
 :PenneArrabiata_3_to_4 rdf:type owl:ObjectProperty ;
-                       
-                       rdfs:domain :CookPasta ;
                        
                        rdfs:range :Flavor ;
                        
@@ -119,8 +111,6 @@
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_4_to_5
 
 :PenneArrabiata_4_to_5 rdf:type owl:ObjectProperty ;
-                       
-                       rdfs:domain :Flavor ;
                        
                        rdfs:range :Fry ;
                        
@@ -154,8 +144,6 @@
                     
                     rdfs:range :Cook ;
                     
-                    rdfs:domain :Flavor ;
-                    
                     rdfs:subPropertyOf :Ratatouille_Transition .
 
 
@@ -186,8 +174,6 @@
                           
                           rdfs:range :Fry ;
                           
-                          rdfs:domain :MakeBreading ;
-                          
                           rdfs:subPropertyOf :VienneseSchnitzel_Transition .
 
 
@@ -197,8 +183,6 @@
 :VienneseSchnitzel_3_to_4 rdf:type owl:ObjectProperty ;
                           
                           rdfs:range :Flavor ;
-                          
-                          rdfs:domain :Fry ;
                           
                           rdfs:subPropertyOf :VienneseSchnitzel_Transition .
 
@@ -238,15 +222,15 @@
                  owl:IrreflexiveProperty ,
                  owl:ObjectProperty ;
         
-        rdfs:range [ rdf:type owl:Restriction ;
-                     owl:onProperty :before ;
-                     owl:allValuesFrom :RecipeStep
-                   ] ;
-        
         rdfs:domain [ rdf:type owl:Restriction ;
                       owl:onProperty :before ;
                       owl:allValuesFrom :RecipeStep
-                    ] .
+                    ] ;
+        
+        rdfs:range [ rdf:type owl:Restriction ;
+                     owl:onProperty :before ;
+                     owl:allValuesFrom :RecipeStep
+                   ] .
 
 
 
@@ -254,15 +238,15 @@
 
 :hasIngredient rdf:type owl:ObjectProperty ;
                
-               rdfs:range [ rdf:type owl:Restriction ;
-                            owl:onProperty :hasIngredient ;
-                            owl:allValuesFrom :Ingredient
-                          ] ;
-               
                rdfs:domain [ rdf:type owl:Restriction ;
                              owl:onProperty :hasIngredient ;
                              owl:someValuesFrom :RecipeStep
-                           ] .
+                           ] ;
+               
+               rdfs:range [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasIngredient ;
+                            owl:allValuesFrom :Ingredient
+                          ] .
 
 
 
@@ -270,15 +254,15 @@
 
 :usesEquipment rdf:type owl:ObjectProperty ;
                
-               rdfs:domain [ rdf:type owl:Restriction ;
-                             owl:onProperty :usesEquipment ;
-                             owl:someValuesFrom :RecipeStep
-                           ] ;
-               
                rdfs:range [ rdf:type owl:Restriction ;
                             owl:onProperty :usesEquipment ;
                             owl:allValuesFrom :Equipment
-                          ] .
+                          ] ;
+               
+               rdfs:domain [ rdf:type owl:Restriction ;
+                             owl:onProperty :usesEquipment ;
+                             owl:someValuesFrom :RecipeStep
+                           ] .
 
 
 
