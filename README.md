@@ -27,8 +27,9 @@ Cooking Process Ontology
 	The process for creation a dish is composed of these steps, which are represented as defined classes.
 	They can be inferred for an recipie individual by the use of ingredients and equipment.
 
-1.5.	Define the ordering object properties ( before ) and ( after ), where before creates the linear ordering
+1.5.	Define the ordering object properties ( start, before, after ), where before creates the linear ordering
 	by being functional, asymmetric and irreflexive. after is defined as being the inverse of before.
+	start properties define the starting step individuals for the ordering.
 
 
 
@@ -61,13 +62,13 @@ Cooking Process Ontology
 
 2.4.1.	For inferring the order of the recipie steps, some preparations are needed.
 	Because we did use classes as representations of the recipie steps, no direct ordering can be done.
-	Therefore we have to define individuals for the steps and create object properties to connect these steps.
+	Therefore we have to define individuals for the steps and assign object properties to connect these steps.
 
-2.4.2	Then for each transition from one step to the next an object property is defined as subproperty of before.
-	The preceding step class is used as the domain and the following step class is used as range.
-	The order will be linear because of the before superclass. The step individuals are then linked together 
-	using these transition object properties.
+2.4.2	For each 2 steps assign an object property from the subproperty of before denoting the next step in question.
+	To one step individual assign an object property from the subproperty of start to denote the starting step.
+	This is a drawback of this approach as you have to know which step is the first one of the process. 
+	For the other steps the order will be linear because of the before superclass.
 
 2.4.3.	If the reasoner is started, the recipie step order and the recipie step classes of the step individuals
-	are inferred to create a cooking process description.
+	are inferred to create the cooking process description. 
 

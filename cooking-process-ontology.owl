@@ -16,186 +16,6 @@
 #################################################################
 
 
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Bulgogi_1_to_2
-
-:Bulgogi_1_to_2 rdf:type owl:ObjectProperty ;
-                
-                rdfs:subPropertyOf :Bulgogi_Transition ;
-                
-                rdfs:domain :PrepareVegetables ;
-                
-                rdfs:range :SliceMeat .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Bulgogi_2_to_3
-
-:Bulgogi_2_to_3 rdf:type owl:ObjectProperty ;
-                
-                rdfs:subPropertyOf :Bulgogi_Transition ;
-                
-                rdfs:range :Fry .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Bulgogi_Transition
-
-:Bulgogi_Transition rdf:type owl:ObjectProperty ;
-                    
-                    rdfs:subPropertyOf :before .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#HamAndEggs_1_to_2
-
-:HamAndEggs_1_to_2 rdf:type owl:ObjectProperty ;
-                   
-                   rdfs:subPropertyOf :HamAndEggs_Transition ;
-                   
-                   rdfs:domain :PrepareEggs ;
-                   
-                   rdfs:range :SliceMeat .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#HamAndEggs_2_to_3
-
-:HamAndEggs_2_to_3 rdf:type owl:ObjectProperty ;
-                   
-                   rdfs:range :Fry ;
-                   
-                   rdfs:subPropertyOf :HamAndEggs_Transition .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#HamAndEggs_Transition
-
-:HamAndEggs_Transition rdf:type owl:ObjectProperty ;
-                       
-                       rdfs:subPropertyOf :before .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_1_to_2
-
-:PenneArrabiata_1_to_2 rdf:type owl:ObjectProperty ;
-                       
-                       rdfs:subPropertyOf :PenneArrabiata_Transition ;
-                       
-                       rdfs:range :PrepareVegetables ;
-                       
-                       rdfs:domain :SliceMeat .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_2_to_3
-
-:PenneArrabiata_2_to_3 rdf:type owl:ObjectProperty ;
-                       
-                       rdfs:range :CookPasta ;
-                       
-                       rdfs:subPropertyOf :PenneArrabiata_Transition .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_3_to_4
-
-:PenneArrabiata_3_to_4 rdf:type owl:ObjectProperty ;
-                       
-                       rdfs:range :Flavor ;
-                       
-                       rdfs:subPropertyOf :PenneArrabiata_Transition .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_4_to_5
-
-:PenneArrabiata_4_to_5 rdf:type owl:ObjectProperty ;
-                       
-                       rdfs:range :Fry ;
-                       
-                       rdfs:subPropertyOf :PenneArrabiata_Transition .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_Transition
-
-:PenneArrabiata_Transition rdf:type owl:ObjectProperty ;
-                           
-                           rdfs:subPropertyOf :before .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Ratatouille_1_to_2
-
-:Ratatouille_1_to_2 rdf:type owl:ObjectProperty ;
-                    
-                    rdfs:range :Flavor ;
-                    
-                    rdfs:domain :PrepareVegetables ;
-                    
-                    rdfs:subPropertyOf :Ratatouille_Transition .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Ratatouille_2_to_3
-
-:Ratatouille_2_to_3 rdf:type owl:ObjectProperty ;
-                    
-                    rdfs:range :Cook ;
-                    
-                    rdfs:subPropertyOf :Ratatouille_Transition .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Ratatouille_Transition
-
-:Ratatouille_Transition rdf:type owl:ObjectProperty ;
-                        
-                        rdfs:subPropertyOf :before .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#VienneseSchnitzel_1_to_2
-
-:VienneseSchnitzel_1_to_2 rdf:type owl:ObjectProperty ;
-                          
-                          rdfs:domain :CookPotatoes ;
-                          
-                          rdfs:range :MakeBreading ;
-                          
-                          rdfs:subPropertyOf :VienneseSchnitzel_Transition .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#VienneseSchnitzel_2_to_3
-
-:VienneseSchnitzel_2_to_3 rdf:type owl:ObjectProperty ;
-                          
-                          rdfs:range :Fry ;
-                          
-                          rdfs:subPropertyOf :VienneseSchnitzel_Transition .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#VienneseSchnitzel_3_to_4
-
-:VienneseSchnitzel_3_to_4 rdf:type owl:ObjectProperty ;
-                          
-                          rdfs:range :Flavor ;
-                          
-                          rdfs:subPropertyOf :VienneseSchnitzel_Transition .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#VienneseSchnitzel_Transition
-
-:VienneseSchnitzel_Transition rdf:type owl:ObjectProperty ;
-                              
-                              rdfs:subPropertyOf :before .
-
-
-
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#after
 
 :after rdf:type owl:IrreflexiveProperty ,
@@ -238,15 +58,145 @@
 
 :hasIngredient rdf:type owl:ObjectProperty ;
                
-               rdfs:domain [ rdf:type owl:Restriction ;
-                             owl:onProperty :hasIngredient ;
-                             owl:someValuesFrom :RecipeStep
-                           ] ;
-               
                rdfs:range [ rdf:type owl:Restriction ;
                             owl:onProperty :hasIngredient ;
                             owl:allValuesFrom :Ingredient
-                          ] .
+                          ] ;
+               
+               rdfs:domain [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasIngredient ;
+                             owl:someValuesFrom :RecipeStep
+                           ] .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_Cook
+
+:next_Cook rdf:type owl:ObjectProperty ;
+           
+           rdfs:range :Cook ;
+           
+           rdfs:subPropertyOf :before .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_CookPasta
+
+:next_CookPasta rdf:type owl:ObjectProperty ;
+                
+                rdfs:range :CookPasta ;
+                
+                rdfs:subPropertyOf :next_Cook .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_Flavor
+
+:next_Flavor rdf:type owl:ObjectProperty ;
+             
+             rdfs:range :Flavor ;
+             
+             rdfs:subPropertyOf :before .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_Fry
+
+:next_Fry rdf:type owl:ObjectProperty ;
+          
+          rdfs:range :Fry ;
+          
+          rdfs:subPropertyOf :before .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_MakeBreading
+
+:next_MakeBreading rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:range :MakeBreading ;
+                   
+                   rdfs:domain :RecipeStep ;
+                   
+                   rdfs:subPropertyOf :before .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_PrepareVegetables
+
+:next_PrepareVegetables rdf:type owl:ObjectProperty ;
+                        
+                        rdfs:range :PrepareVegetables ;
+                        
+                        rdfs:domain :RecipeStep ;
+                        
+                        rdfs:subPropertyOf :before .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_SliceMeat
+
+:next_SliceMeat rdf:type owl:ObjectProperty ;
+                
+                rdfs:range :SliceMeat ;
+                
+                rdfs:subPropertyOf :before .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#start
+
+:start rdf:type owl:FunctionalProperty ,
+                owl:ObjectProperty ,
+                owl:ReflexiveProperty .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#start_CookPotatoes
+
+:start_CookPotatoes rdf:type owl:ObjectProperty ;
+                    
+                    rdfs:domain :CookPotatoes ;
+                    
+                    rdfs:range :RecipeStep ;
+                    
+                    rdfs:subPropertyOf :start .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#start_PrepareEggs
+
+:start_PrepareEggs rdf:type owl:ObjectProperty ;
+                   
+                   rdfs:domain :PrepareEggs ;
+                   
+                   rdfs:range :RecipeStep ;
+                   
+                   rdfs:subPropertyOf :start .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#start_PrepareVegetables
+
+:start_PrepareVegetables rdf:type owl:ObjectProperty ;
+                         
+                         rdfs:domain :PrepareVegetables ;
+                         
+                         rdfs:range :RecipeStep ;
+                         
+                         rdfs:subPropertyOf :start .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#start_SliceMeat
+
+:start_SliceMeat rdf:type owl:ObjectProperty ;
+                 
+                 rdfs:range :RecipeStep ;
+                 
+                 rdfs:domain :SliceMeat ;
+                 
+                 rdfs:subPropertyOf :start .
 
 
 
@@ -254,15 +204,15 @@
 
 :usesEquipment rdf:type owl:ObjectProperty ;
                
-               rdfs:range [ rdf:type owl:Restriction ;
-                            owl:onProperty :usesEquipment ;
-                            owl:allValuesFrom :Equipment
-                          ] ;
-               
                rdfs:domain [ rdf:type owl:Restriction ;
                              owl:onProperty :usesEquipment ;
                              owl:someValuesFrom :RecipeStep
-                           ] .
+                           ] ;
+               
+               rdfs:range [ rdf:type owl:Restriction ;
+                            owl:onProperty :usesEquipment ;
+                            owl:allValuesFrom :Equipment
+                          ] .
 
 
 
@@ -714,7 +664,9 @@ Put oil into hot pan and fry onions and meat"""^^rdfs:Literal ;
 
 :Bulgogi_Step_1 rdf:type owl:NamedIndividual ;
                 
-                :Bulgogi_1_to_2 :Bulgogi_Step_2 .
+                :start_PrepareVegetables :Bulgogi_Step_1 ;
+                
+                :next_SliceMeat :Bulgogi_Step_2 .
 
 
 
@@ -722,7 +674,7 @@ Put oil into hot pan and fry onions and meat"""^^rdfs:Literal ;
 
 :Bulgogi_Step_2 rdf:type owl:NamedIndividual ;
                 
-                :Bulgogi_2_to_3 :Bulgogi_Step_3 .
+                :next_Fry :Bulgogi_Step_3 .
 
 
 
@@ -829,7 +781,9 @@ Put oil into hot pan, put ham and eggs into pan and fry"""^^rdfs:Literal ;
 
 :HamAndEggs_Step_1 rdf:type owl:NamedIndividual ;
                    
-                   :HamAndEggs_1_to_2 :HamAndEggs_Step_2 .
+                   :start_PrepareEggs :HamAndEggs_Step_1 ;
+                   
+                   :next_SliceMeat :HamAndEggs_Step_2 .
 
 
 
@@ -837,7 +791,7 @@ Put oil into hot pan, put ham and eggs into pan and fry"""^^rdfs:Literal ;
 
 :HamAndEggs_Step_2 rdf:type owl:NamedIndividual ;
                    
-                   :HamAndEggs_2_to_3 :HamAndEggs_Step_3 .
+                   :next_Fry :HamAndEggs_Step_3 .
 
 
 
@@ -911,6 +865,13 @@ Put oil into hot pan, put ham and eggs into pan and fry"""^^rdfs:Literal ;
 :PenneArrabiata_Recipie rdf:type :Recipe ,
                                  owl:NamedIndividual ;
                         
+                        :hasDescription """Making Penne Arrabiata, a typical italian dish:
+Cut bacon
+clean and cut the vegetables
+Cook the penne
+Mix parsley, salt and pepper with the vegetables
+Fry the vegetables"""^^rdfs:Literal ;
+                        
                         :hasIngredient :Bacon ,
                                        :Butter ,
                                        :Chili ,
@@ -939,7 +900,9 @@ Put oil into hot pan, put ham and eggs into pan and fry"""^^rdfs:Literal ;
 
 :PenneArrabiata_Step_1 rdf:type owl:NamedIndividual ;
                        
-                       :PenneArrabiata_1_to_2 :PenneArrabiata_Step_2 .
+                       :start_SliceMeat :PenneArrabiata_Step_1 ;
+                       
+                       :next_PrepareVegetables :PenneArrabiata_Step_2 .
 
 
 
@@ -947,7 +910,7 @@ Put oil into hot pan, put ham and eggs into pan and fry"""^^rdfs:Literal ;
 
 :PenneArrabiata_Step_2 rdf:type owl:NamedIndividual ;
                        
-                       :PenneArrabiata_2_to_3 :PenneArrabiata_Step_3 .
+                       :next_CookPasta :PenneArrabiata_Step_3 .
 
 
 
@@ -955,7 +918,7 @@ Put oil into hot pan, put ham and eggs into pan and fry"""^^rdfs:Literal ;
 
 :PenneArrabiata_Step_3 rdf:type owl:NamedIndividual ;
                        
-                       :PenneArrabiata_3_to_4 :PenneArrabiata_Step_4 .
+                       :next_Flavor :PenneArrabiata_Step_4 .
 
 
 
@@ -963,7 +926,7 @@ Put oil into hot pan, put ham and eggs into pan and fry"""^^rdfs:Literal ;
 
 :PenneArrabiata_Step_4 rdf:type owl:NamedIndividual ;
                        
-                       :PenneArrabiata_4_to_5 :PenneArrabiata_Step_5 .
+                       :next_Fry :PenneArrabiata_Step_5 .
 
 
 
@@ -1025,7 +988,9 @@ Put into pot and cook"""^^rdfs:Literal ;
 
 :Ratatouille_Step_1 rdf:type owl:NamedIndividual ;
                     
-                    :Ratatouille_1_to_2 :Ratatouille_Step_2 .
+                    :start_PrepareVegetables :Ratatouille_Step_1 ;
+                    
+                    :next_Flavor :Ratatouille_Step_2 .
 
 
 
@@ -1033,7 +998,7 @@ Put into pot and cook"""^^rdfs:Literal ;
 
 :Ratatouille_Step_2 rdf:type owl:NamedIndividual ;
                     
-                    :Ratatouille_2_to_3 :Ratatouille_Step_3 .
+                    :next_Cook :Ratatouille_Step_3 .
 
 
 
@@ -1129,7 +1094,9 @@ Flavor with parsley"""^^rdfs:Literal ;
 
 :VienneseSchnitzel_Step_1 rdf:type owl:NamedIndividual ;
                           
-                          :VienneseSchnitzel_1_to_2 :VienneseSchnitzel_Step_2 .
+                          :start_CookPotatoes :VienneseSchnitzel_Step_1 ;
+                          
+                          :next_MakeBreading :VienneseSchnitzel_Step_2 .
 
 
 
@@ -1137,7 +1104,7 @@ Flavor with parsley"""^^rdfs:Literal ;
 
 :VienneseSchnitzel_Step_2 rdf:type owl:NamedIndividual ;
                           
-                          :VienneseSchnitzel_2_to_3 :VienneseSchnitzel_Step_3 .
+                          :next_Fry :VienneseSchnitzel_Step_3 .
 
 
 
@@ -1145,7 +1112,7 @@ Flavor with parsley"""^^rdfs:Literal ;
 
 :VienneseSchnitzel_Step_3 rdf:type owl:NamedIndividual ;
                           
-                          :VienneseSchnitzel_3_to_4 :VienneseSchnitzel_Step_4 .
+                          :next_Flavor :VienneseSchnitzel_Step_4 .
 
 
 
