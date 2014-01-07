@@ -16,44 +16,6 @@
 #################################################################
 
 
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#after
-
-:after rdf:type owl:IrreflexiveProperty ,
-                owl:ObjectProperty ;
-       
-       owl:inverseOf :before ;
-       
-       rdfs:range [ rdf:type owl:Restriction ;
-                    owl:onProperty :after ;
-                    owl:allValuesFrom :RecipeStep
-                  ] ;
-       
-       rdfs:domain [ rdf:type owl:Restriction ;
-                     owl:onProperty :after ;
-                     owl:allValuesFrom :RecipeStep
-                   ] .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#before
-
-:before rdf:type owl:AsymmetricProperty ,
-                 owl:FunctionalProperty ,
-                 owl:IrreflexiveProperty ,
-                 owl:ObjectProperty ;
-        
-        rdfs:domain [ rdf:type owl:Restriction ;
-                      owl:onProperty :before ;
-                      owl:allValuesFrom :RecipeStep
-                    ] ;
-        
-        rdfs:range [ rdf:type owl:Restriction ;
-                     owl:onProperty :before ;
-                     owl:allValuesFrom :RecipeStep
-                   ] .
-
-
-
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#hasIngredient
 
 :hasIngredient rdf:type owl:ObjectProperty ;
@@ -70,133 +32,59 @@
 
 
 
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_Cook
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#hasStep
 
-:next_Cook rdf:type owl:ObjectProperty ;
-           
-           rdfs:range :Cook ;
-           
-           rdfs:subPropertyOf :before .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_CookPasta
-
-:next_CookPasta rdf:type owl:ObjectProperty ;
-                
-                rdfs:range :CookPasta ;
-                
-                rdfs:subPropertyOf :next_Cook .
+:hasStep rdf:type owl:InverseFunctionalProperty ,
+                  owl:ObjectProperty ;
+         
+         rdfs:domain :Recipe ;
+         
+         rdfs:range :RecipeStep .
 
 
 
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_Flavor
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next
 
-:next_Flavor rdf:type owl:ObjectProperty ;
-             
-             rdfs:range :Flavor ;
-             
-             rdfs:subPropertyOf :before .
+:next rdf:type owl:FunctionalProperty ,
+               owl:IrreflexiveProperty ,
+               owl:ObjectProperty ;
+      
+      rdfs:domain [ rdf:type owl:Restriction ;
+                    owl:onProperty :next ;
+                    owl:allValuesFrom [ rdf:type owl:Class ;
+                                        owl:unionOf ( :RecipeStep
+                                                      :RuleContext
+                                                    )
+                                      ]
+                  ] ;
+      
+      rdfs:range [ rdf:type owl:Restriction ;
+                   owl:onProperty :next ;
+                   owl:allValuesFrom [ rdf:type owl:Class ;
+                                       owl:unionOf ( :RecipeStep
+                                                     :RuleContext
+                                                   )
+                                     ]
+                 ] .
 
 
 
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_Fry
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#previous
 
-:next_Fry rdf:type owl:ObjectProperty ;
+:previous rdf:type owl:IrreflexiveProperty ,
+                   owl:ObjectProperty ;
           
-          rdfs:range :Fry ;
+          owl:inverseOf :next ;
           
-          rdfs:subPropertyOf :before .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_MakeBreading
-
-:next_MakeBreading rdf:type owl:ObjectProperty ;
-                   
-                   rdfs:range :MakeBreading ;
-                   
-                   rdfs:domain :RecipeStep ;
-                   
-                   rdfs:subPropertyOf :before .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_PrepareVegetables
-
-:next_PrepareVegetables rdf:type owl:ObjectProperty ;
-                        
-                        rdfs:range :PrepareVegetables ;
-                        
-                        rdfs:domain :RecipeStep ;
-                        
-                        rdfs:subPropertyOf :before .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#next_SliceMeat
-
-:next_SliceMeat rdf:type owl:ObjectProperty ;
-                
-                rdfs:range :SliceMeat ;
-                
-                rdfs:subPropertyOf :before .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#start
-
-:start rdf:type owl:FunctionalProperty ,
-                owl:ObjectProperty ,
-                owl:ReflexiveProperty .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#start_CookPotatoes
-
-:start_CookPotatoes rdf:type owl:ObjectProperty ;
-                    
-                    rdfs:domain :CookPotatoes ;
-                    
-                    rdfs:range :RecipeStep ;
-                    
-                    rdfs:subPropertyOf :start .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#start_PrepareEggs
-
-:start_PrepareEggs rdf:type owl:ObjectProperty ;
-                   
-                   rdfs:domain :PrepareEggs ;
-                   
-                   rdfs:range :RecipeStep ;
-                   
-                   rdfs:subPropertyOf :start .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#start_PrepareVegetables
-
-:start_PrepareVegetables rdf:type owl:ObjectProperty ;
-                         
-                         rdfs:domain :PrepareVegetables ;
-                         
-                         rdfs:range :RecipeStep ;
-                         
-                         rdfs:subPropertyOf :start .
-
-
-
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#start_SliceMeat
-
-:start_SliceMeat rdf:type owl:ObjectProperty ;
-                 
-                 rdfs:range :RecipeStep ;
-                 
-                 rdfs:domain :SliceMeat ;
-                 
-                 rdfs:subPropertyOf :start .
+          rdfs:range [ rdf:type owl:Restriction ;
+                       owl:onProperty :previous ;
+                       owl:allValuesFrom :RecipeStep
+                     ] ;
+          
+          rdfs:domain [ rdf:type owl:Restriction ;
+                        owl:onProperty :previous ;
+                        owl:allValuesFrom :RecipeStep
+                      ] .
 
 
 
@@ -251,6 +139,14 @@
 :Bread rdf:type owl:Class ;
        
        rdfs:subClassOf :Cereal .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#BulgogiContext
+
+:BulgogiContext rdf:type owl:Class ;
+                
+                rdfs:subClassOf :RuleContext .
 
 
 
@@ -407,6 +303,14 @@
 
 
 
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#HamAndEggsContext
+
+:HamAndEggsContext rdf:type owl:Class ;
+                   
+                   rdfs:subClassOf :RuleContext .
+
+
+
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Ingredient
 
 :Ingredient rdf:type owl:Class .
@@ -490,6 +394,14 @@
 
 
 
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiataContext
+
+:PenneArrabiataContext rdf:type owl:Class ;
+                       
+                       rdfs:subClassOf :RuleContext .
+
+
+
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Potato
 
 :Potato rdf:type owl:Class ;
@@ -543,6 +455,14 @@
 
 
 
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#RatatouilleContext
+
+:RatatouilleContext rdf:type owl:Class ;
+                    
+                    rdfs:subClassOf :RuleContext .
+
+
+
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Recipe
 
 :Recipe rdf:type owl:Class .
@@ -552,6 +472,12 @@
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#RecipeStep
 
 :RecipeStep rdf:type owl:Class .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#RuleContext
+
+:RuleContext rdf:type owl:Class .
 
 
 
@@ -598,6 +524,14 @@
 :Vegetable rdf:type owl:Class ;
            
            rdfs:subClassOf :Ingredient .
+
+
+
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#VienneseSchnitzelContext
+
+:VienneseSchnitzelContext rdf:type owl:Class ;
+                          
+                          rdfs:subClassOf :RuleContext .
 
 
 
@@ -648,8 +582,13 @@ Cut onions
 Cut beef
 Put oil into hot pan and fry onions and meat"""^^rdfs:Literal ;
                 
-                :hasIngredient :Beef ,
-                               :Onion ;
+                :hasIngredient :Beef ;
+                
+                :hasStep :Bulgogi_Step_1 ,
+                         :Bulgogi_Step_2 ,
+                         :Bulgogi_Step_3 ;
+                
+                :hasIngredient :Onion ;
                 
                 :usesEquipment :Pan ;
                 
@@ -662,25 +601,22 @@ Put oil into hot pan and fry onions and meat"""^^rdfs:Literal ;
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Bulgogi_Step_1
 
-:Bulgogi_Step_1 rdf:type owl:NamedIndividual ;
-                
-                :start_PrepareVegetables :Bulgogi_Step_1 ;
-                
-                :next_SliceMeat :Bulgogi_Step_2 .
+:Bulgogi_Step_1 rdf:type :PrepareVegetables ,
+                         owl:NamedIndividual .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Bulgogi_Step_2
 
-:Bulgogi_Step_2 rdf:type owl:NamedIndividual ;
-                
-                :next_Fry :Bulgogi_Step_3 .
+:Bulgogi_Step_2 rdf:type :SliceMeat ,
+                         owl:NamedIndividual .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Bulgogi_Step_3
 
-:Bulgogi_Step_3 rdf:type owl:NamedIndividual .
+:Bulgogi_Step_3 rdf:type :Fry ,
+                         owl:NamedIndividual .
 
 
 
@@ -754,50 +690,51 @@ Put oil into hot pan and fry onions and meat"""^^rdfs:Literal ;
 
 
 
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#HamAndEggs_Recipie
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#HamAndEggs_Recipe
 
-:HamAndEggs_Recipie rdf:type :Recipe ,
-                             owl:NamedIndividual ;
-                    
-                    :hasDescription """Making Ham and Eggs:
+:HamAndEggs_Recipe rdf:type :Recipe ,
+                            owl:NamedIndividual ;
+                   
+                   :hasDescription """Making Ham and Eggs:
 Open eggs and put into bowl
 Cut ham
 Put oil into hot pan, put ham and eggs into pan and fry"""^^rdfs:Literal ;
-                    
-                    :usesEquipment :Bowl ;
-                    
-                    :hasIngredient :ChickenEgg ,
-                                   :Ham ;
-                    
-                    :usesEquipment :KitchenStove ,
-                                   :Pan ,
-                                   :SlicingKnife ;
-                    
-                    :hasIngredient :SunflowerOil .
+                   
+                   :usesEquipment :Bowl ;
+                   
+                   :hasIngredient :ChickenEgg ,
+                                  :Ham ;
+                   
+                   :hasStep :HamAndEggs_Step_1 ,
+                            :HamAndEggs_Step_2 ,
+                            :HamAndEggs_Step_3 ;
+                   
+                   :usesEquipment :KitchenStove ,
+                                  :Pan ,
+                                  :SlicingKnife ;
+                   
+                   :hasIngredient :SunflowerOil .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#HamAndEggs_Step_1
 
-:HamAndEggs_Step_1 rdf:type owl:NamedIndividual ;
-                   
-                   :start_PrepareEggs :HamAndEggs_Step_1 ;
-                   
-                   :next_SliceMeat :HamAndEggs_Step_2 .
+:HamAndEggs_Step_1 rdf:type :PrepareEggs ,
+                            owl:NamedIndividual .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#HamAndEggs_Step_2
 
-:HamAndEggs_Step_2 rdf:type owl:NamedIndividual ;
-                   
-                   :next_Fry :HamAndEggs_Step_3 .
+:HamAndEggs_Step_2 rdf:type :SliceMeat ,
+                            owl:NamedIndividual .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#HamAndEggs_Step_3
 
-:HamAndEggs_Step_3 rdf:type owl:NamedIndividual .
+:HamAndEggs_Step_3 rdf:type :Fry ,
+                            owl:NamedIndividual .
 
 
 
@@ -860,79 +797,81 @@ Put oil into hot pan, put ham and eggs into pan and fry"""^^rdfs:Literal ;
 
 
 
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_Recipie
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_Recipe
 
-:PenneArrabiata_Recipie rdf:type :Recipe ,
-                                 owl:NamedIndividual ;
-                        
-                        :hasDescription """Making Penne Arrabiata, a typical italian dish:
+:PenneArrabiata_Recipe rdf:type :Recipe ,
+                                owl:NamedIndividual ;
+                       
+                       :hasDescription """Making Penne Arrabiata, a typical italian dish:
 Cut bacon
 clean and cut the vegetables
 Cook the penne
 Mix parsley, salt and pepper with the vegetables
 Fry the vegetables"""^^rdfs:Literal ;
-                        
-                        :hasIngredient :Bacon ,
-                                       :Butter ,
-                                       :Chili ,
-                                       :CornOil ,
-                                       :Garlic ;
-                        
-                        :usesEquipment :KitchenStove ;
-                        
-                        :hasIngredient :Onion ,
-                                       :Parmesan ,
-                                       :Parsley ,
-                                       :Penne ,
-                                       :Pepper ;
-                        
-                        :usesEquipment :Pot ;
-                        
-                        :hasIngredient :Salt ;
-                        
-                        :usesEquipment :SlicingKnife ;
-                        
-                        :hasIngredient :Tomato .
+                       
+                       :hasIngredient :Bacon ,
+                                      :Butter ,
+                                      :Chili ,
+                                      :CornOil ,
+                                      :Garlic ;
+                       
+                       :usesEquipment :KitchenStove ;
+                       
+                       :hasIngredient :Onion ,
+                                      :Parmesan ,
+                                      :Parsley ,
+                                      :Penne ;
+                       
+                       :hasStep :PenneArrabiata_Step_1 ,
+                                :PenneArrabiata_Step_2 ,
+                                :PenneArrabiata_Step_3 ,
+                                :PenneArrabiata_Step_4 ,
+                                :PenneArrabiata_Step_5 ;
+                       
+                       :hasIngredient :Pepper ;
+                       
+                       :usesEquipment :Pot ;
+                       
+                       :hasIngredient :Salt ;
+                       
+                       :usesEquipment :SlicingKnife ;
+                       
+                       :hasIngredient :Tomato .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_Step_1
 
-:PenneArrabiata_Step_1 rdf:type owl:NamedIndividual ;
-                       
-                       :start_SliceMeat :PenneArrabiata_Step_1 ;
-                       
-                       :next_PrepareVegetables :PenneArrabiata_Step_2 .
+:PenneArrabiata_Step_1 rdf:type :SliceMeat ,
+                                owl:NamedIndividual .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_Step_2
 
-:PenneArrabiata_Step_2 rdf:type owl:NamedIndividual ;
-                       
-                       :next_CookPasta :PenneArrabiata_Step_3 .
+:PenneArrabiata_Step_2 rdf:type :PrepareVegetables ,
+                                owl:NamedIndividual .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_Step_3
 
-:PenneArrabiata_Step_3 rdf:type owl:NamedIndividual ;
-                       
-                       :next_Flavor :PenneArrabiata_Step_4 .
+:PenneArrabiata_Step_3 rdf:type :CookPasta ,
+                                owl:NamedIndividual .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_Step_4
 
-:PenneArrabiata_Step_4 rdf:type owl:NamedIndividual ;
-                       
-                       :next_Fry :PenneArrabiata_Step_5 .
+:PenneArrabiata_Step_4 rdf:type :Flavor ,
+                                owl:NamedIndividual .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#PenneArrabiata_Step_5
 
-:PenneArrabiata_Step_5 rdf:type owl:NamedIndividual .
+:PenneArrabiata_Step_5 rdf:type :Fry ,
+                                owl:NamedIndividual .
 
 
 
@@ -957,54 +896,55 @@ Fry the vegetables"""^^rdfs:Literal ;
 
 
 
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Ratatouille_Recipie
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Ratatouille_Recipe
 
-:Ratatouille_Recipie rdf:type :Recipe ,
-                              owl:NamedIndividual ;
-                     
-                     :hasDescription """Making Ratatouille, a traditional french stewed vegetable dish:
+:Ratatouille_Recipe rdf:type :Recipe ,
+                             owl:NamedIndividual ;
+                    
+                    :hasDescription """Making Ratatouille, a traditional french stewed vegetable dish:
 Clean and cut vegetables
 Flavor with herbs
 Put into pot and cook"""^^rdfs:Literal ;
-                     
-                     :hasIngredient :Eggplant ,
-                                    :Herbs ;
-                     
-                     :usesEquipment :KitchenStove ;
-                     
-                     :hasIngredient :Onion ;
-                     
-                     :usesEquipment :Pot ;
-                     
-                     :hasIngredient :Tomato ;
-                     
-                     :usesEquipment :UtilityKnife ;
-                     
-                     :hasIngredient :Zucchini .
+                    
+                    :hasIngredient :Eggplant ,
+                                   :Herbs ;
+                    
+                    :usesEquipment :KitchenStove ;
+                    
+                    :hasIngredient :Onion ;
+                    
+                    :usesEquipment :Pot ;
+                    
+                    :hasStep :Ratatouille_Step_1 ,
+                             :Ratatouille_Step_2 ,
+                             :Ratatouille_Step_3 ;
+                    
+                    :hasIngredient :Tomato ;
+                    
+                    :usesEquipment :UtilityKnife ;
+                    
+                    :hasIngredient :Zucchini .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Ratatouille_Step_1
 
-:Ratatouille_Step_1 rdf:type owl:NamedIndividual ;
-                    
-                    :start_PrepareVegetables :Ratatouille_Step_1 ;
-                    
-                    :next_Flavor :Ratatouille_Step_2 .
+:Ratatouille_Step_1 rdf:type :PrepareVegetables ,
+                             owl:NamedIndividual .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Ratatouille_Step_2
 
-:Ratatouille_Step_2 rdf:type owl:NamedIndividual ;
-                    
-                    :next_Cook :Ratatouille_Step_3 .
+:Ratatouille_Step_2 rdf:type :Flavor ,
+                             owl:NamedIndividual .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#Ratatouille_Step_3
 
-:Ratatouille_Step_3 rdf:type owl:NamedIndividual .
+:Ratatouille_Step_3 rdf:type :Cook ,
+                             owl:NamedIndividual .
 
 
 
@@ -1057,68 +997,69 @@ Put into pot and cook"""^^rdfs:Literal ;
 
 
 
-###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#VienneseSchnitzel_Recipie
+###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#VienneseSchnitzel_Recipe
 
-:VienneseSchnitzel_Recipie rdf:type :Recipe ,
-                                    owl:NamedIndividual ;
-                           
-                           :hasDescription """Making Viennese Schnitzel, a typical austrian dish:
+:VienneseSchnitzel_Recipe rdf:type :Recipe ,
+                                   owl:NamedIndividual ;
+                          
+                          :hasDescription """Making Viennese Schnitzel, a typical austrian dish:
 Cook and peel potatoes
 Prepare breading using eggs, cream, flour and breadcrumbs
 Put schnitzels into breading
 Put oil and lard into hot pan and fry the schnitzels
 Flavor with parsley"""^^rdfs:Literal ;
-                           
-                           :hasIngredient :Breadcrumbs ,
-                                          :ChickenEgg ,
-                                          :CookingPotato ,
-                                          :CornOil ,
-                                          :Cream ,
-                                          :Flour ;
-                           
-                           :usesEquipment :KitchenStove ;
-                           
-                           :hasIngredient :Lard ;
-                           
-                           :usesEquipment :Pan ;
-                           
-                           :hasIngredient :Parsley ;
-                           
-                           :usesEquipment :PotatoPeeler ;
-                           
-                           :hasIngredient :Schnitzel .
+                          
+                          :hasIngredient :Breadcrumbs ,
+                                         :ChickenEgg ,
+                                         :CookingPotato ,
+                                         :CornOil ,
+                                         :Cream ,
+                                         :Flour ;
+                          
+                          :usesEquipment :KitchenStove ;
+                          
+                          :hasIngredient :Lard ;
+                          
+                          :usesEquipment :Pan ;
+                          
+                          :hasIngredient :Parsley ;
+                          
+                          :usesEquipment :PotatoPeeler ;
+                          
+                          :hasIngredient :Schnitzel ;
+                          
+                          :hasStep :VienneseSchnitzel_Step_1 ,
+                                   :VienneseSchnitzel_Step_2 ,
+                                   :VienneseSchnitzel_Step_3 ,
+                                   :VienneseSchnitzel_Step_4 .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#VienneseSchnitzel_Step_1
 
-:VienneseSchnitzel_Step_1 rdf:type owl:NamedIndividual ;
-                          
-                          :start_CookPotatoes :VienneseSchnitzel_Step_1 ;
-                          
-                          :next_MakeBreading :VienneseSchnitzel_Step_2 .
+:VienneseSchnitzel_Step_1 rdf:type :CookPotatoes ,
+                                   owl:NamedIndividual .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#VienneseSchnitzel_Step_2
 
-:VienneseSchnitzel_Step_2 rdf:type owl:NamedIndividual ;
-                          
-                          :next_Fry :VienneseSchnitzel_Step_3 .
+:VienneseSchnitzel_Step_2 rdf:type :MakeBreading ,
+                                   owl:NamedIndividual .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#VienneseSchnitzel_Step_3
 
-:VienneseSchnitzel_Step_3 rdf:type owl:NamedIndividual ;
-                          
-                          :next_Flavor :VienneseSchnitzel_Step_4 .
+:VienneseSchnitzel_Step_3 rdf:type :Fry ,
+                                   owl:NamedIndividual .
 
 
 
 ###  http://www.semanticweb.org/at/ac/tuwien/ifs/188.387/ontologies/cooking-process-ontology#VienneseSchnitzel_Step_4
 
-:VienneseSchnitzel_Step_4 rdf:type owl:NamedIndividual .
+:VienneseSchnitzel_Step_4 rdf:type :Flavor ,
+                                   owl:NamedIndividual .
 
 
 
@@ -1129,6 +1070,587 @@ Flavor with parsley"""^^rdfs:Literal ;
 
 
 
+
+
+#################################################################
+#
+#    Rules
+#
+#################################################################
+
+
+<urn:swrl#y> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+<urn:swrl#x> rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :HamAndEggsContext ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                    ] ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                            <http://www.w3.org/2003/11/swrl#classPredicate> :PrepareEggs ;
+                                                                            <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                                          ] ;
+                                                                rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                           rdf:rest rdf:nil ;
+                                                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :SliceMeat ;
+                                                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                                                     ]
+                                                                         ]
+                                                              ] ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#classPredicate> :HamAndEggsContext ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                               ]
+                                                   ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#propertyPredicate> :next ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                      <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                            <http://www.w3.org/2003/11/swrl#classPredicate> :VienneseSchnitzelContext ;
+                                                                            <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                                          ] ;
+                                                                rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                           rdf:rest rdf:nil ;
+                                                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :VienneseSchnitzelContext ;
+                                                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                                                     ]
+                                                                         ]
+                                                              ] ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#classPredicate> :MakeBreading ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                               ]
+                                                   ] ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :CookPotatoes ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                    ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#propertyPredicate> :next ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                      <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:rest rdf:nil ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> :Ratatouille_Recipe ;
+                                                                 <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasStep ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                               ]
+                                                   ] ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :RecipeStep ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :RatatouilleContext ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#classPredicate> :Flavor ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                               ] ;
+                                                     rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                           rdf:rest rdf:nil ;
+                                                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :PenneArrabiataContext ;
+                                                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                                                     ]
+                                                                         ] ;
+                                                                rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                            <http://www.w3.org/2003/11/swrl#classPredicate> :PenneArrabiataContext ;
+                                                                            <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                                          ]
+                                                              ]
+                                                   ] ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :CookPasta ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                    ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#propertyPredicate> :next ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                      <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                            <http://www.w3.org/2003/11/swrl#classPredicate> :PrepareVegetables ;
+                                                                            <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                                          ] ;
+                                                                rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                           rdf:rest rdf:nil ;
+                                                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :SliceMeat ;
+                                                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                                                     ]
+                                                                         ]
+                                                              ] ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#classPredicate> :PenneArrabiataContext ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                               ]
+                                                   ] ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :PenneArrabiataContext ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                    ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#propertyPredicate> :next ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                      <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#propertyPredicate> :next ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                      <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                    ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#classPredicate> :PenneArrabiataContext ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                               ] ;
+                                                     rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                            <http://www.w3.org/2003/11/swrl#classPredicate> :PenneArrabiataContext ;
+                                                                            <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                                          ] ;
+                                                                rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                           rdf:rest rdf:nil ;
+                                                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :PrepareVegetables ;
+                                                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                                                     ]
+                                                                         ]
+                                                              ]
+                                                   ] ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :CookPasta ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#propertyPredicate> :next ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                      <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                    ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :Fry ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ] ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                            <http://www.w3.org/2003/11/swrl#classPredicate> :VienneseSchnitzelContext ;
+                                                                            <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                                          ] ;
+                                                                rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                           rdf:rest rdf:nil ;
+                                                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :VienneseSchnitzelContext ;
+                                                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                                                     ]
+                                                                         ]
+                                                              ] ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#classPredicate> :MakeBreading ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                               ]
+                                                   ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :HamAndEggsContext ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :RecipeStep ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ] ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:rest rdf:nil ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> :HamAndEggs_Recipe ;
+                                                                 <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasStep ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                               ]
+                                                   ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#propertyPredicate> :next ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                      <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                    ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#classPredicate> :PrepareVegetables ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                               ] ;
+                                                     rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                           rdf:rest rdf:nil ;
+                                                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :RatatouilleContext ;
+                                                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                                                     ]
+                                                                         ] ;
+                                                                rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                            <http://www.w3.org/2003/11/swrl#classPredicate> :RatatouilleContext ;
+                                                                            <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                                          ]
+                                                              ]
+                                                   ] ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :Flavor ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:rest rdf:nil ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> :Bulgogi_Recipe ;
+                                                                 <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasStep ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                               ]
+                                                   ] ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :RecipeStep ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :BulgogiContext ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#propertyPredicate> :next ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                      <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                    ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#classPredicate> :BulgogiContext ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                               ] ;
+                                                     rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                           rdf:rest rdf:nil ;
+                                                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :SliceMeat ;
+                                                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                                                     ]
+                                                                         ] ;
+                                                                rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                            <http://www.w3.org/2003/11/swrl#classPredicate> :PrepareVegetables ;
+                                                                            <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                                          ]
+                                                              ]
+                                                   ] ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :BulgogiContext ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :BulgogiContext ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                    ] ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                            <http://www.w3.org/2003/11/swrl#classPredicate> :Fry ;
+                                                                            <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                                          ] ;
+                                                                rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                           rdf:rest rdf:nil ;
+                                                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :SliceMeat ;
+                                                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                                                     ]
+                                                                         ]
+                                                              ] ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#classPredicate> :BulgogiContext ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                               ]
+                                                   ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#propertyPredicate> :next ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                      <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                            <http://www.w3.org/2003/11/swrl#classPredicate> :VienneseSchnitzelContext ;
+                                                                            <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                                          ] ;
+                                                                rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                           rdf:rest rdf:nil ;
+                                                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :VienneseSchnitzelContext ;
+                                                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                                                     ]
+                                                                         ]
+                                                              ] ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#classPredicate> :Fry ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                               ]
+                                                   ] ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :Flavor ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#propertyPredicate> :next ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                      <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :RecipeStep ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ] ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:rest rdf:nil ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> :VienneseSchnitzel_Recipe ;
+                                                                 <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasStep ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                               ]
+                                                   ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :VienneseSchnitzelContext ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :Cook ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ] ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                            <http://www.w3.org/2003/11/swrl#classPredicate> :RatatouilleContext ;
+                                                                            <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                                          ] ;
+                                                                rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                           rdf:rest rdf:nil ;
+                                                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :RatatouilleContext ;
+                                                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                                                     ]
+                                                                         ]
+                                                              ] ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#classPredicate> :Flavor ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                               ]
+                                                   ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#propertyPredicate> :next ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                      <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#propertyPredicate> :next ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                      <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                    ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :Flavor ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                    ] ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                            <http://www.w3.org/2003/11/swrl#classPredicate> :PenneArrabiataContext ;
+                                                                            <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                                          ] ;
+                                                                rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                           rdf:rest rdf:nil ;
+                                                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :PenneArrabiataContext ;
+                                                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                                                     ]
+                                                                         ]
+                                                              ] ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#classPredicate> :Fry ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                               ]
+                                                   ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :Fry ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ] ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#classPredicate> :HamAndEggsContext ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                               ] ;
+                                                     rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                            <http://www.w3.org/2003/11/swrl#classPredicate> :HamAndEggsContext ;
+                                                                            <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                                          ] ;
+                                                                rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                           rdf:rest rdf:nil ;
+                                                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :SliceMeat ;
+                                                                                       <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x>
+                                                                                     ]
+                                                                         ]
+                                                              ]
+                                                   ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#propertyPredicate> :next ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#x> ;
+                                                      <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
+[ rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+  <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest rdf:nil ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :PenneArrabiataContext ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ]
+                                        ] ;
+  <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                          rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                     rdf:rest rdf:nil ;
+                                                     rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument1> :PenneArrabiata_Recipe ;
+                                                                 <http://www.w3.org/2003/11/swrl#propertyPredicate> :hasStep ;
+                                                                 <http://www.w3.org/2003/11/swrl#argument2> <urn:swrl#y>
+                                                               ]
+                                                   ] ;
+                                          rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                      <http://www.w3.org/2003/11/swrl#classPredicate> :RecipeStep ;
+                                                      <http://www.w3.org/2003/11/swrl#argument1> <urn:swrl#y>
+                                                    ]
+                                        ]
+] .
 
 ###  Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net
 
